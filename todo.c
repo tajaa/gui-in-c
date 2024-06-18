@@ -11,6 +11,10 @@ int main() {
 
   lf_init_glfw(winw, winh, window);
 
+  LfTheme theme = lf_get_theme();
+  theme.div_props.color = LF_NO_COLOR;
+  lf_set_theme(theme);
+
   
   while(!glfwWindowShouldClose(window)){
     glClear(GL_COLOR_BUFFER_BIT);
