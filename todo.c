@@ -3,6 +3,7 @@
 
 #define WIN_MARGIN 20.0f
 static int winw = 1280, winh = 720 ;
+static LfFont titlefont;
 int main() {
   glfwInit();
   GLFWwindow* window = glfwCreateWindow(winw, winh,"Todo", NULL, NULL);
@@ -15,6 +16,8 @@ int main() {
   theme.div_props.color = LF_NO_COLOR;
   lf_set_theme(theme);
 
+  titlefont = lf_load_font("./fonts/inter-bold.ttf", 40);
+
   
   while(!glfwWindowShouldClose(window)){
     glClear(GL_COLOR_BUFFER_BIT);
@@ -23,21 +26,21 @@ int main() {
     lf_begin();
 
     lf_div_begin(((vec2s){WIN_MARGIN, WIN_MARGIN}), ((vec2s){winw- WIN_MARGIN
-          * 2.0f, winh - WIN_MARGIN * 2.0f}),true);
-    
+          * 2.0f, winh - WIN_MARGIN * 2.0f}),true); 
 
+    lf_push_font(&titlefont);
+    lf_text("Your to do");
+    lf_pop_font();
 
-    lf_text("it works!");
     lf_end();
 
     glfwPollEvents();
-
     glfwSwapBuffers(window);
-
   }
-    glfwDestroyWindow(window);
-    glfwTerminate();
-    return 0;
+lf_free_font(&titlefont);
+glfwDestroyWindow(window);
+glfwTerminate();
+return 0;
   
   
 }
