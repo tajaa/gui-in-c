@@ -29,8 +29,23 @@ int main() {
           * 2.0f, winh - WIN_MARGIN * 2.0f}),true); 
 
     lf_push_font(&titlefont);
-    lf_text("Your to do");
+    lf_text("Your to do!");
     lf_pop_font();
+    {
+      const float width = 160.0f;
+      //sets pointer for next element to a given value
+      lf_set_ptr_x_absolute(winw - width - WIN_MARGIN * 2.0f);
+      LfUIElementProps props = lf_get_theme().button_props;
+      props.margin_left = 0.0f;
+      props.margin_right= 0.0f;
+
+      lf_push_style_props(props);
+      lf_set_line_should_overflow(false);
+      lf_button_fixed("new task!", width, -1);
+      lf_set_line_should_overflow(true);
+      lf_pop_style_props();
+    }
+
 
     lf_end();
 
