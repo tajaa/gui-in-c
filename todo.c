@@ -55,6 +55,15 @@ int main() {
           * 2.0f, winh - WIN_MARGIN * 2.0f}),true); 
     
   rendertopbar();
+  lf_next_line();
+
+  { const uint32_t numfilters = 6;
+    static const char* filters[] = {"ALL", "IN PROGRESS", "COMPLETED", "LOW", "MEDIUM", "HIGH"};
+
+    for(uint32_t i=0; i< numfilters; i++){
+      lf_button(filters[i]);
+    }
+  }
 
 
     lf_end();
